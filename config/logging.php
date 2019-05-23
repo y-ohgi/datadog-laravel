@@ -89,6 +89,16 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'ddlog' => [
+            'driver' => 'monolog',
+            'handler' => Monolog\Handler\StreamHandler::class,
+            'tap' => [App\Logging\DatadogFormatter::class],
+            'formatter' => env('LOG_STDERR_FORMATTER', Monolog\Formatter\JsonFormatter::class),
+            'with' => [
+                'stream' => 'php://stdout',
+            ],
+        ],
     ],
 
 ];

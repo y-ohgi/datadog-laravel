@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/health', function () {
+    Log::info('hoge');
+    return response('ok', 200)
+        ->header('Content-Type', 'text/plain');
+});
